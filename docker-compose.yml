@@ -1,0 +1,64 @@
+version: '2'
+services:
+######################################
+# API Container
+######################################
+  api:
+    container_name: app-api
+    image: petronetto/php-nginx-alpine
+    volumes:
+      - ./:/app
+    links:
+      - database
+      - redis
+    ports:
+      - 8080:80
+
+######################################
+# Database Container
+######################################
+  database:
+    container_name: app-database
+    restart: always
+    image: postgres:alpine
+    ports:
+      - "5432:5432"
+    environment:
+      DEBUG: "false"
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_DB: ${DB_DATABASE}
+    volumes:
+      - ./data:/var/lib/postgresql
+
+######################################
+# Cache Container
+######################################
+  redis:
+    container_name: app-redis
+    image: redis:alpine
+    volumes:
+      - ./redis-data:/data
+
+######################################
+# Debug Container
+######################################
+  # debug:
+  #   container_name: app-debug
+  #   image: petronetto/php-debug
+  #   environment:
+  #     XDEBUG_HOST: 192.168.25.2
+  #   volumes:
+  #     - ./:/var/www/html
+  #   ports:
+  #     - 8989:80
+  #   links:
+  #     - database
+  #     - redis
+
+######################################
+# Volumes
+######################################
+volumes:
+   data:
+      driver: local

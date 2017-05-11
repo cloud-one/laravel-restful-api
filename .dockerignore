@@ -1,0 +1,10 @@
+.DS_Store
+data
+redis-data
+.vscode
+docker-compose.yml
+Dockerfile
+docker
+pa
+.env
+README.md
