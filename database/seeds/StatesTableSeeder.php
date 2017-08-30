@@ -41,6 +41,6 @@ class StatesTableSeeder extends Seeder
             ["name" => "Tocantins",           "abbr" => "TO"],
         ]);
 
-		$this->command->info('Estados criados');
+        $this->command->info('Estados criados');
     }
 }
