@@ -1,32 +1,32 @@
 # laravel RESTful API Boilerplate
 
-## Rodando a aplicação
+## Running the app
 ```bash
-# subindo os containers
+# going up the containers
 docker-compose up -d
 
-# instalando as dependências
+# installing the dependencies
 composer install
 
-# ou
+# or
 docker exec -it app-api composer install
 ```
 
-Renomeie o arquivo `.env.example` para `.env`.
+Rename the file `.env.example` for `.env`.
 
 Execute as migrations e seeds:
 `docker exec -it app-api php artisan migrate --seed`
 
-## Atualizando a documentação
+## Updating the documentation
 `docker exec -it app-api php artisan api:generate --routePrefix="api/v1/*" --noResponseCalls --force`
-ou
+or
 `./docs`
 
-A documentação ficará disponível em `localhost:8080/docs/`
+Documentation will be available at `localhost:8080/docs/`
 
-## Testes
+## Tests
 `docker exec -it app-api vendor/bin/phpunit`
 
-# Documentação da API
+# API Documentation
 
 http://localhost/docs/
